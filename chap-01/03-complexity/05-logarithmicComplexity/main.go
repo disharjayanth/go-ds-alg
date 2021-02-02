@@ -27,6 +27,7 @@ func (tree *Tree) insert(m int) {
 				if tree.LeftNode != nil {
 					tree.LeftNode.insert(m)
 				} else {
+					// Not reach since we start if condition from left to right
 					tree.RightNode.insert(m)
 				}
 			}
