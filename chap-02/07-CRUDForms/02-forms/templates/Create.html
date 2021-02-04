@@ -1,0 +1,15 @@
+{{ define "Create" }}
+    <br>
+    {{ template "Menu" }}
+    <h1>Create a customer</h1>
+    <br>
+    <form method="POST" action="/submit">
+        Customer Name: <input type="text" name="customername" placeholder="Enter your name" autofocus />
+        <br>
+        <br>
+        SSN: <input type="text" name="customerssn" placeholder="Enter your SSN" />
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{{ end }}

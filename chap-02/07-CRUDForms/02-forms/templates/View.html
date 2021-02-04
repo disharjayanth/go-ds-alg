@@ -1,0 +1,11 @@
+{{ define "Viewing" }}
+<br>
+    {{ template "Menu" }}
+    {{ if . }}
+        <h2>ID: {{ .CustomerID }}</h2>
+        <h2>Name: {{ .CustomerName }}</h2>
+        <h2>SSN: {{ .CustomerSSN }}</h2>
+    {{ else }} 
+        <h2>No Customer with given id</h2>
+    {{ end}}
+{{ end }}
