@@ -51,10 +51,10 @@ func (linkedList *LinkedList) AddToLast(property int) {
 	}
 
 	// Or use
-	lastNode := linkedList.LastNode()
-	if lastNode != nil {
-		lastNode.nextNode = &newNode
-	}
+	// lastNode := linkedList.LastNode()
+	// if lastNode != nil {
+	// 	lastNode.nextNode = &newNode
+	// }
 }
 
 func (linkedList *LinkedList) NodeWithValue(property int) *Node {
