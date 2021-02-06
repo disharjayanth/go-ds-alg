@@ -55,6 +55,38 @@ func (s *Set) Union(anotherSet *Set) *Set {
 	return unionSet
 }
 
+func (s *Set) Difference(anotherSet *Set) *Set {
+	diffSet := &Set{}
+	diffSet.New()
+
+	intersectSet := s.Intersect(anotherSet)
+
+	for key, _ := range s.integerMap {
+		if !intersectSet.Contains(key) {
+			diffSet.Add(key)
+		}
+	}
+
+	return diffSet
+}
+
+func (s *Set) Subset(anotherSet *Set) {
+	length := len(anotherSet.integerMap)
+
+	count := 0
+	for key, _ := range s.integerMap {
+		if anotherSet.Contains(key) {
+			count++
+		}
+	}
+
+	if count == length {
+		fmt.Println(*anotherSet, "is a subset of", *s)
+	} else {
+		fmt.Println(*anotherSet, "is not a subset of", *s)
+	}
+}
+
 func main() {
 	set1 := &Set{}
 	set1.New()
@@ -97,4 +129,29 @@ func main() {
 
 	unionSet := set1.Union(set2)
 	fmt.Println(unionSet, len(unionSet.integerMap))
+
+	fmt.Println("******************************************")
+	fmt.Println("Difference in set1 and set2")
+
+	diffSet := set1.Difference(set2)
+	fmt.Println(diffSet)
+
+	fmt.Println("******************************************")
+	set3 := &Set{}
+	set3.New()
+
+	set3.Add(1)
+	set3.Add(2)
+	set3.Add(3)
+	set3.Add(4)
+
+	set4 := &Set{}
+	set4.New()
+	set4.Add(1)
+	set4.Add(2)
+	// set4.Add(3)
+	set4.Add(4)
+	// set4.Add(5)
+
+	set3.Subset(set4)
 }
