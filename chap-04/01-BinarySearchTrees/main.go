@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	key   int
@@ -45,16 +47,16 @@ func (node *Node) insert(data int) {
 	}
 }
 
-func (node *Node) min() int {
+func (node *Node) min() *Node {
 	if node.left == nil {
-		return node.key
+		return node
 	}
 	return node.left.min()
 }
 
-func (node *Node) max() int {
+func (node *Node) max() *Node {
 	if node.right == nil {
-		return node.key
+		return node
 	}
 	return node.right.max()
 }
