@@ -84,6 +84,9 @@ func (node *Node) Search(key int) *Node {
 }
 
 func (tree *Tree) RemoveNode(key int) {
+	if key == tree.rootNode.key {
+		tree.rootNode = removeNode(tree.rootNode, key)
+	}
 	removeNode(tree.rootNode, key)
 }
 
@@ -113,9 +116,7 @@ func removeNode(node *Node, key int) *Node {
 	}
 
 	if node.right == nil {
-		// fmt.Println("Right is nil")
 		node = node.left
-		// fmt.Println(node)
 		return node
 	}
 
@@ -200,8 +201,8 @@ func main() {
 	fmt.Println("Search for node: -1")
 	fmt.Println(tree.Search(-1))
 
-	fmt.Println("Remove node: 7")
-	tree.RemoveNode(7)
+	fmt.Println("Remove node: 8")
+	tree.RemoveNode(8)
 
 	fmt.Println("PRE - ORDER")
 	printPreOrder("root", tree.rootNode)
