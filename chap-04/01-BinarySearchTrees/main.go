@@ -83,6 +83,55 @@ func (node *Node) Search(key int) *Node {
 	}
 }
 
+func (tree *Tree) RemoveNode(key int) {
+	removeNode(tree.rootNode, key)
+}
+
+func removeNode(node *Node, key int) *Node {
+	if node == nil {
+		return nil
+	}
+
+	if key < node.key {
+		node.left = removeNode(node.left, key)
+		return node
+	}
+
+	if key > node.key {
+		node.right = removeNode(node.right, key)
+		return node
+	}
+
+	if node.left == nil && node.right == nil {
+		node = nil
+		return node
+	}
+
+	if node.left == nil {
+		node = node.right
+		return node
+	}
+
+	if node.right == nil {
+		// fmt.Println("Right is nil")
+		node = node.left
+		// fmt.Println(node)
+		return node
+	}
+
+	leftMostRightNode := node.right
+	for {
+		if leftMostRightNode != nil && leftMostRightNode.left != nil {
+			leftMostRightNode = leftMostRightNode.left
+		} else {
+			break
+		}
+	}
+	node.key = leftMostRightNode.key
+	node.right = removeNode(node.right, node.key)
+	return node
+}
+
 func printPreOrder(side string, node *Node) {
 	if node == nil {
 		return
@@ -150,4 +199,10 @@ func main() {
 
 	fmt.Println("Search for node: -1")
 	fmt.Println(tree.Search(-1))
+
+	fmt.Println("Remove node: 7")
+	tree.RemoveNode(7)
+
+	fmt.Println("PRE - ORDER")
+	printPreOrder("root", tree.rootNode)
 }
