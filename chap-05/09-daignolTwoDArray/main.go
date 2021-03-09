@@ -5,7 +5,7 @@ import "fmt"
 func printZigZag(m1 [4][4]int) {
 	m := 4
 	n := 4
-	for k := 0; k < m-1; k++ {
+	for k := 0; k <= m-1; k++ {
 		i := k
 		j := 0
 		for i >= 0 {
